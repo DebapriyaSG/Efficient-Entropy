@@ -1,5 +1,5 @@
 tic;
-path1=strcat(pwd,'\All_Images_Combined');
+path1=strcat(pwd,'\Database');
 listing=dir(path1);
 SZ=size(listing);
 J_Arr_p=zeros(1,SZ(1)-2); %Because first two points are non-image
