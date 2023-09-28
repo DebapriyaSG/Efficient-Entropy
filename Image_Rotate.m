@@ -1,3 +1,6 @@
+%This function rotates an image by an input angle and finds out the corner
+%coordinates of the rotated image
+
 function[IMG,pair_1,pair_2,pair_3,pair_4]=Image_Rotate(im,ang)
 s=size(im);
 x=s(1);

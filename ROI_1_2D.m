@@ -1,3 +1,6 @@
+%This function finds out the overlapping region of two images while
+%computing joint entropy
+
 function[C,D,BW]=ROI_1_2D(A,B_t,pair_1,pair_2,pair_3,pair_4)
 sA=size(A);
 sB_t=size(B_t);

@@ -1,3 +1,5 @@
+%This code computes entropy of images using the standard formula
+
 tic;
 path1=strcat(pwd,'\Database');
 listing=dir(path1);
