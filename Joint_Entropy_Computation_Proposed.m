@@ -1,7 +1,7 @@
 %This code computes joint entropy of an image with itself rotated by 20
 %degree, using a computationally efficient algorithm
 
-tic;
+
 path1=strcat(pwd,'\Database');
 listing=dir(path1);
 SZ=size(listing);
@@ -125,4 +125,5 @@ for ii=1:SZ(1)
         J_Arr_p(counter)=E;
     end       
 end
-toc;         
+
+J_ent_mean_p=sum(J_Arr_p)/counter;

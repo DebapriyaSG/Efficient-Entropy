@@ -1,11 +1,11 @@
 %This code computes joint entropy of an image with itself rotated by 20
 %degree using the standard joint entropy formula
 
-tic;
+
 path1=strcat(pwd,'\Database');
 listing=dir(path1);
 SZ=size(listing);
-J_Arr=zeros(1,SZ(1)-2); %Because first two points are non-image
+J_Arr_std=zeros(1,SZ(1)-2); %Because first two points are non-image
 counter=0;
 
 for ii=1:SZ(1) 
@@ -118,7 +118,9 @@ for ii=1:SZ(1)
           Ent=(-1)*Ent; 
           E=Ent;
         end
-        J_Arr(counter)=E;
+        J_Arr_std(counter)=E;
     end       
 end
-  toc;         
+
+J_ent_mean_s=sum(J_Arr_std)/counter;
+          

@@ -1,6 +1,5 @@
 %This code computes entropy of images using the standard formula
 
-tic;
 path1=strcat(pwd,'\Database');
 listing=dir(path1);
 SZ=size(listing);
@@ -81,6 +80,5 @@ for ii=1:SZ(1)
         AR1(counter)=E;
     end
 end
-SS=size(AR1);
-EE=sum(AR1)/SS(2);
-toc;
+
+std_ent_mean=sum(AR1)/counter;
