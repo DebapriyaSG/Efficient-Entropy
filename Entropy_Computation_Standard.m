@@ -1,5 +1,8 @@
 %This code computes entropy of images using the standard formula
 
+clear;
+clc;
+
 path1=strcat(pwd,'\Database');
 listing=dir(path1);
 SZ=size(listing);

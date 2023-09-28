@@ -1,6 +1,9 @@
 
 %This code computes time taken to perform a division 20000 times
 
+clear;
+clc;
+
 %Arbitrary values assigned to a and b
 a=0.123;
 b=0.456;

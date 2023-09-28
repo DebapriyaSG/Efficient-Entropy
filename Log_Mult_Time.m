@@ -1,5 +1,7 @@
 %This code computes time taken to perform one logarithm (base 2) and one multiplication (20000 times)
 
+clear;
+clc;
 
 %Arbitrary values assigned to a and b
 a=0.123;

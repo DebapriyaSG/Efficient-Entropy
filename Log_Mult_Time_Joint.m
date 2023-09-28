@@ -2,6 +2,9 @@
 %This code computes time taken to perform three logarithms (base 2) and three multiplications
 %(20000 times)
 
+clear;
+clc;
+
 %Arbitrary values assigned to a, b and c
 a=0.123;
 b=0.456;

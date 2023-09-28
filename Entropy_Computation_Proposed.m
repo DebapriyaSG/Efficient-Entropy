@@ -1,5 +1,7 @@
 %This code computes entropy of images using a computationally efficient algorithm 
 
+clear;
+clc;
 
 path1=strcat(pwd,'\Database');
 listing=dir(path1);
