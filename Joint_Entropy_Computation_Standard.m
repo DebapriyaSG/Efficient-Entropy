@@ -61,35 +61,32 @@ for ii=1:SZ(1)
           totR=sum(histR(:));
           totG=sum(histG(:));
           totB=sum(histB(:));
-          probR=histR/totR;
-          probG=histG/totG;
-          probB=histB/totB;          
+          probR=(histR/totR)+eps;
+          probG=(histG/totG)+eps;
+          probB=(histB/totB)+eps;          
           EntR=0;
           EntG=0;
           EntB=0;
 
           %Joint Entropy standard method
           for i=1:256
-              for j=1:256
-                  if(probR(i,j)~=0)
-                    TR=probR(i,j)*log2(probR(i,j));
-                    EntR=EntR+TR;
-                  end
-                  if(probG(i,j)~=0)
-                    TG=probG(i,j)*log2(probG(i,j));
-                    EntG=EntG+TG;
-                  end
-                  if(probB(i,j)~=0)
-                    TB=probB(i,j)*log2(probB(i,j));
-                    EntB=EntB+TB;
-                  end
+              for j=1:256                  
+                  TR=probR(i,j)*log2(probR(i,j));
+                  EntR=EntR+TR;    
+
+                  TG=probG(i,j)*log2(probG(i,j));
+                  EntG=EntG+TG;                  
+                  
+                  TB=probB(i,j)*log2(probB(i,j));
+                  EntB=EntB+TB;
+                  
               end
           end
           EntR=(-1)*EntR;
           EntG=(-1)*EntG;
           EntB=(-1)*EntB;
           E=(EntR+EntG+EntB)/3;
-        else %For non-RGB images
+        else %For non-RGB images            
           [Im_R,pair_1,pair_2,pair_3,pair_4]=Image_Rotate(Im,20);
           [C,D,BW]=ROI_1_2D(Im,Im_R,pair_1,pair_2,pair_3,pair_4);
           
@@ -105,16 +102,14 @@ for ii=1:SZ(1)
               end
           end
           tot=sum(hist(:));          
-          prob=hist/tot;                   
+          prob=(hist/tot)+eps;                   
           Ent=0;
           
           %Joint Entropy standard method
           for i=1:256
-              for j=1:256
-                  if(prob(i,j)~=0)
-                    T=prob(i,j)*log2(prob(i,j));
-                    Ent=Ent+T; 
-                  end
+              for j=1:256                  
+                  T=prob(i,j)*log2(prob(i,j));
+                  Ent=Ent+T;                   
               end
           end
           Ent=(-1)*Ent; 
@@ -123,6 +118,5 @@ for ii=1:SZ(1)
         J_Arr_std(counter)=E;
     end       
 end
-
 J_ent_mean_s=sum(J_Arr_std)/counter;
           

@@ -61,31 +61,27 @@ for ii=1:SZ(1)
           totR=sum(histR(:));
           totG=sum(histG(:));
           totB=sum(histB(:));
-          probR=histR/totR;
-          probG=histG/totG;
-          probB=histB/totB;          
+          probR=(histR/totR)+eps;
+          probG=(histG/totG)+eps;
+          probB=(histB/totB)+eps;          
           EntR=0;
           EntG=0;
           EntB=0;
 
           %Joint Entropy proposed method
           for i=1:2:255
-              for j=1:2:255
-                  if(probR(i,j)~=0||probR(i+1,j)~=0||probR(i,j+1)~=0||probR(i+1,j+1)~=0)
+              for j=1:2:255                  
                     TR1=(probR(i,j)+probR(i+1,j)+probR(i,j+1)+probR(i+1,j+1));
                     TR=TR1*log2(TR1/4);
-                    EntR=EntR+TR;
-                  end
-                  if(probG(i,j)~=0||probG(i+1,j)~=0||probG(i,j+1)~=0||probG(i+1,j+1)~=0)
+                    EntR=EntR+TR;  
+
                     TG1=(probG(i,j)+probG(i+1,j)+probG(i,j+1)+probG(i+1,j+1));
                     TG=TG1*log2(TG1/4);
-                    EntG=EntG+TG;
-                  end
-                  if(probB(i,j)~=0||probB(i+1,j)~=0||probB(i,j+1)~=0||probB(i+1,j+1)~=0)
+                    EntG=EntG+TG; 
+
                     TB1=(probB(i,j)+probB(i+1,j)+probB(i,j+1)+probB(i+1,j+1));
                     TB=TB1*log2(TB1/4);
-                    EntB=EntB+TB;
-                  end
+                    EntB=EntB+TB;                  
               end
           end
           EntR=(-1)*EntR;
@@ -108,18 +104,16 @@ for ii=1:SZ(1)
               end
           end
           tot=sum(hist(:));          
-          prob=hist/tot;                   
+          prob=(hist/tot)+eps;                   
           Ent=0;
           
           %Joint Entropy proposed method
           for i=1:2:255
-              for j=1:2:255
-                  if(prob(i,j)~=0||prob(i+1,j)~=0||prob(i,j+1)~=0||prob(i+1,j+1)~=0)
-                        T1=(prob(i,j)+prob(i+1,j)+prob(i,j+1)+prob(i+1,j+1)); 
-                        T=T1*log2(T1/4);
-                        Ent=Ent+T; 
-                  end
-              end
+              for j=1:2:255                  
+                    T1=(prob(i,j)+prob(i+1,j)+prob(i,j+1)+prob(i+1,j+1)); 
+                    T=T1*log2(T1/4);
+                    Ent=Ent+T;                   
+               end
           end
           Ent=(-1)*Ent; 
           E=Ent;
@@ -127,5 +121,4 @@ for ii=1:SZ(1)
         J_Arr_p(counter)=E;
     end       
 end
-
 J_ent_mean_p=sum(J_Arr_p)/counter;

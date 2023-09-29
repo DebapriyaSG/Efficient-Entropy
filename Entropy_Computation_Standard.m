@@ -14,7 +14,7 @@ for ii=1:SZ(1)
     byt=listing(ii).bytes;    
     if(byt~=0)
         counter=counter+1;
-        file=strcat('E:\HDD-1\PhD\Publications(CICT and ICIC)\Entropy Computation Renewed\All_Images_Combined\',f);             
+        file=strcat(path1,'\',f);             
         Im=imread(file);
         if(islogical(Im))
             Im=uint8(255*Im);
@@ -40,24 +40,18 @@ for ii=1:SZ(1)
            S1=sum(H1);
            S2=sum(H2);
            S3=sum(H3);
-           H1=H1/S1;
-           H2=H2/S2;
-           H3=H3/S3;
+           H1=(H1/S1)+eps;
+           H2=(H2/S2)+eps;
+           H3=(H3/S3)+eps;
            e1=0;
            e2=0;
            e3=0;
 
            %Entropy standard method
-           for i=1:256
-               if(~(H1(i)==0))
-                    e1=e1+H1(i)*log2(H1(i));
-               end
-               if(~(H2(i)==0))
-                    e2=e2+H2(i)*log2(H2(i));
-               end
-               if(~(H3(i)==0))
-                    e3=e3+H3(i)*log2(H3(i));
-               end
+           for i=1:256               
+               e1=e1+H1(i)*log2(H1(i));              
+               e2=e2+H2(i)*log2(H2(i));             
+               e3=e3+H3(i)*log2(H3(i));               
            end
            E=(-1)*((e1+e2+e3)/3);
         else %For non-RGB images
@@ -69,14 +63,12 @@ for ii=1:SZ(1)
                end
            end
            S1=sum(H1);
-           H1=H1/S1;
+           H1=(H1/S1)+eps;
            e=0;
 
            %Entropy standard method
-           for i=1:256
-               if(~(H1(i)==0))
-                    e=e+H1(i)*log2(H1(i));
-               end
+           for i=1:256               
+               e=e+H1(i)*log2(H1(i));               
            end
            E=(-1)*e;
         end
